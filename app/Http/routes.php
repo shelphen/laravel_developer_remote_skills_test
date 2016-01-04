@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +25,13 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::get('/', [
+        'as' => 'welcome.page',
+        'uses' => 'ProductsController@welcomePage'
+    ]);
+
+    Route::post('add-product', [
+        'as' => 'add.product',
+        'uses' => 'ProductsController@addProduct'
+    ]);
 });
